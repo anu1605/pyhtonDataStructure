@@ -1,15 +1,13 @@
 
-from ArrayLists import ArrayList
+from linkedLists import LinkedList
 
-array = ArrayList()
-array.insert(5)
-array.insert(60)
-array.insert(6)
-array.insert(16)
-array.insert(20)
-array.insert(4)
-array.insert(2)
-array.printArray()
-array.addElementAt(100, 15)
-print("")
-array.printArray()
+linkedList = LinkedList()
+
+linkedList.insert(5)
+linkedList.insert(6)
+linkedList.insert(8)
+linkedList.insert(12)
+linkedList.print()
+print("head points to", linkedList.get_head())
+print("tail points to", linkedList.get_tail())
+print(linkedList.total_nodes())
