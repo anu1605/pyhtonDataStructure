@@ -1,13 +1,12 @@
+from linkedLists import *
 
-from linkedLists import LinkedList
 
-linkedList = LinkedList()
+array = LinkedList()
+array.add(6)
+array.add(4)
+array.add(12)
+array.add(16)
+array.add(9)
 
-linkedList.insert(5)
-linkedList.insert(6)
-linkedList.insert(8)
-linkedList.insert(12)
-linkedList.print()
-print("head points to", linkedList.get_head())
-print("tail points to", linkedList.get_tail())
-print(linkedList.total_nodes())
+array.insert(50, 100)
+array.display()
