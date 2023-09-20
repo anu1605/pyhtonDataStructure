@@ -20,7 +20,6 @@ class LinkedList:
     def __init__(self):
         self.__head = None
         self.__tail = None
-        self.__count = 0
 
     def get_head(self):
         return self.__head
@@ -35,41 +34,16 @@ class LinkedList:
         else:
             self.__tail.set_next(new_node)
             self.__tail = new_node
-        self.__count += 1
+        # Remove pass and copy the code you had written to add an element.
 
-    def insert(self, position, data):
-        new_node = Node(data)
-        pointer = self.__head
-        current_node = pointer
+    def display(self):
+        temp = self.__head
+        while (temp is not None):
+            print(temp.get_data())
+            temp = temp.get_next()
+        # Remove pass and copy the code you had written to display the element(s).
 
-        if not position >= 0 or not position <= self.__count:
-            print("index out of range")
-            return
-
-        if position == 0:
-            new_node.set_next(self.__head)
-            self.__head = new_node
-            self.__count += 1
-            return
-
-        elif position == self.__count:
-            self.add(data)
-            return
-
-        for i in range(self.__count+1):
-            prev_node = current_node
-            current_node = pointer
-
-            if i == position:
-                prev_node.set_next(new_node)
-                new_node.set_next(current_node)
-
-            else:
-                pointer = pointer.get_next()
-
-        self.__count += 1
-
-    def search(self, data):
+    def find_node(self, data):
         pointer = self.__head
         while pointer != None:
             if pointer.get_data() == data:
@@ -78,12 +52,19 @@ class LinkedList:
                 pointer = pointer.get_next()
 
         return None
+        # Remove pass and write the logic to find the node and return the node if found or return None.
 
-    def display(self):
-        temp = self.__head
-        while (temp is not None):
-            print(temp.get_data())
-            temp = temp.get_next()
+    def insert(self, data, data_before):
+        pointer = self.__head
+        new_node = Node(data)
+
+        while pointer is not None:
+            if pointer.get_data() == data_before:
+                new_node.set_next(pointer.get_next())
+                pointer.set_next(new_node)
+                return
+            else:
+                pointer = pointer.get_next()
 
     def delete(self, data):
         current_node = self.__head
@@ -105,6 +86,8 @@ class LinkedList:
                 prev_node = current_node
                 current_node = current_node.get_next()
 
+    # You can use the below __str__() to print the elements of the DS object while debugging
+
     def __str__(self):
         temp = self.__head
         msg = []
@@ -114,3 +97,15 @@ class LinkedList:
         msg = " ".join(msg)
         msg = "Linkedlist data(Head to Tail): " + msg
         return msg
+
+
+list1 = LinkedList()
+list1.add("Milk")
+list1.add("Salt")
+list1.add("Biscuits")
+list1.add("Sugar")
+list1.add("Apple Juice")
+list1.add("Pomegranate")
+list1.add("Watermelon")
+list1.delete("Milk")
+list1.display()

@@ -1,13 +1,11 @@
-from linkedLists import *
-
+from linkedLists import LinkedList
 
 array = LinkedList()
-array.add(6)
-array.add(4)
-array.add(12)
-array.add(16)
-array.add(9)
-array.insert(2, "Apple")
-array.insert(0, 15.25)
+array.add(5)
+array.add("Red")
+array.add(3.14)
+array.add(True)
+array.add("56")
 
+array.delete(3.14)
 array.display()
