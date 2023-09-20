@@ -69,6 +69,19 @@ class LinkedList:
 
         self.__count += 1
 
+    def search(self, data):
+        pointer = self.__head
+        index = 0
+        while pointer != None:
+            if pointer.get_data() == data:
+                return index
+            else:
+                index += 1
+
+            pointer = pointer.get_next()
+
+        return -1
+
     def display(self):
         temp = self.__head
         while (temp is not None):
