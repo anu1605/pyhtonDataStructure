@@ -2,6 +2,7 @@ class Node:
     def __init__(self, data):
         self.__data = data
         self.__next = None
+        self.__previous = None
 
     def get_data(self):
         return self.__data
@@ -9,8 +10,14 @@ class Node:
     def set_data(self, data):
         self.__data = data
 
+    def get_previous(self):
+        return self.__previous
+
     def get_next(self):
         return self.__next
+
+    def set_previous(self, previous_node):
+        self.__previous = previous_node
 
     def set_next(self, next_node):
         self.__next = next_node
@@ -34,6 +41,7 @@ class LinkedList:
             self.__head = self.__tail = new_node
         else:
             self.__tail.set_next(new_node)
+            new_node.set_previous(self.__tail)
             self.__tail = new_node
         self.__count += 1
 
@@ -42,12 +50,13 @@ class LinkedList:
         pointer = self.__head
         current_node = pointer
 
-        if not position >= 0 or not position <= self.__count:
+        if position < 0 or position > self.__count:
             print("index out of range")
             return
 
         if position == 0:
             new_node.set_next(self.__head)
+            self.__head.set_previous(new_node)
             self.__head = new_node
             self.__count += 1
             return
@@ -62,7 +71,9 @@ class LinkedList:
 
             if i == position:
                 prev_node.set_next(new_node)
+                new_node.set_previous(prev_node)
                 new_node.set_next(current_node)
+                current_node.set_previous(new_node)
 
             else:
                 pointer = pointer.get_next()
@@ -84,6 +95,12 @@ class LinkedList:
         while (temp is not None):
             print(temp.get_data())
             temp = temp.get_next()
+
+    def display_reverse(self):
+        temp = self.__tail
+        while (temp is not None):
+            print(temp.get_data())
+            temp = temp.get_previous()
 
     def delete(self, data):
         current_node = self.__head
