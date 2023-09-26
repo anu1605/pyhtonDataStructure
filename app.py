@@ -1,51 +1,16 @@
-from stack import Stack
+from queue_list import Queue
+
+queue_array = Queue(5)
+queue_array.push(4)
+queue_array.push(1)
+queue_array.push(7)
+queue_array.push(10)
+queue_array.push(5)
 
 
-def print_result_of(equation_str):
+queue_array.display()
+queue_array.pop()
+queue_array.push(120)
+print("displaying queue")
 
-    stackList = Stack(len(equation_str))
-    operator = None
-    first_operand = None
-    second_operand = None
-    result = None
-    pair_found = False
-
-    for letter in equation_str:
-        if letter == "(":
-            pair_found = False
-            continue
-        elif letter == ")":
-            pair_found = True
-
-        if not pair_found:
-            if letter.isdigit():
-                if letter.find(".") == -1:
-                    stackList.push(int(letter))
-                else:
-                    stackList.push(float(letter))
-            else:
-                stackList.push(letter)
-
-        else:
-            second_operand = stackList.pop()
-
-            operator = stackList.pop()
-            first_operand = stackList.pop()
-
-            if operator == "+":
-                result = first_operand + second_operand
-            elif operator == "-":
-                result = first_operand - second_operand
-            elif operator == "*":
-                result = first_operand * second_operand
-            elif operator == "/":
-                result = first_operand / second_operand
-            elif operator == "%":
-                result = first_operand % second_operand
-
-            stackList.push(result)
-            pair_found = False
-    return result
-
-
-print(print_result_of("((6+((4*3)/3))/2)"))
+queue_array.display()
